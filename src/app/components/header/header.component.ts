@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -8,11 +8,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  @Input() test: string;
+
   name: string = 'Gabriel';
   isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );
+
+  constructor() {}
+
+  ngOnInit(): void {
+    console.log(this.test);
+  }
 
   setLogout() {
     this.isAuthenticated$.next(false);
