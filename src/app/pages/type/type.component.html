@@ -1,0 +1,25 @@
+<div class="results">
+  @if (isLoading) {
+  <img class="spinner" src="../../../assets/spinner.svg" alt="" />
+
+  }@else{ @for (recipe of recipes; track recipe.id) {
+
+  <app-item-recipe
+    [id]="recipe.id"
+    [image]="recipe.image"
+    [title]="recipe.title"
+  ></app-item-recipe>
+  }
+  <div class="buttons">
+    <button class="btn" #btnPreviews (click)="setPreviewsRecipes()">
+      <img src="../../../assets/arrow-left.svg" alt="" />
+    </button>
+    <button class="btn" #btnMore (click)="setMoreRecipes()">
+      <img src="../../../assets/arrow-right.svg" alt="" />
+    </button>
+  </div>
+  }
+</div>
+
+<!-- *ngIf="offSet > 0" -->
+<!-- *ngIf="offSet <= 900" -->
