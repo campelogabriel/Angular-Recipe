@@ -1,0 +1,23 @@
+<div class="container__ingredients">
+  <div class="container__ingredients--input">
+    <h1>Type the ingredients that you want to use in your meal</h1>
+    <!-- FORM VAI AQUI -->
+    <form (submit)="onSubmit($event)">
+      <input name="search" [formControl]="searchText" />
+    </form>
+  </div>
+
+  @if(recipeArr.length > 0){ @if (isLoading) {
+  <img src="../../../assets/spinner.svg" alt="" />
+  } @else{
+  <div class="container__ingredients--recipes">
+    @for (recipe of recipeArr; track recipe.id) {
+    <app-item-recipe
+      [id]="recipe.id"
+      [title]="recipe.title"
+      [image]="recipe.image"
+    ></app-item-recipe>
+    }
+  </div>
+  } }
+</div>
