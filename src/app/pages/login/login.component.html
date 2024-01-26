@@ -1,0 +1,67 @@
+<form [formGroup]="isLogin ? loginForm : registerForm" (submit)="onSubmit()">
+  <div class="choose">
+    <a (click)="setLogin()">Login</a>
+    |
+    <a (click)="setSignup()">Signup</a>
+  </div>
+  @if (isLogin) {
+  <label for="email">Email</label>
+  <input required name="email" placeholder="Email" formControlName="email" />
+  <span
+    class="errorMsg"
+    *ngIf="!email?.pristine && email?.errors?.['required']"
+  >
+    Email is required.</span
+  >
+
+  <label for="password">Password</label>
+  <input
+    name="password"
+    placeholder="Password"
+    type="password"
+    formControlName="password"
+  />
+
+  } @else{
+
+  <label for="name">Name</label>
+  <input name="name" type="text" placeholder="Name" formControlName="name" />
+  <span class="errorMsg" *ngIf="!name?.pristine && name?.errors?.['required']">
+    Name is required.</span
+  >
+  <span class="errorMsg" *ngIf="!name?.pristine && name?.errors?.['minlength']">
+    Name must be at least 4 characters long.</span
+  >
+
+  <label for="email">Email</label>
+  <input required name="email" placeholder="Email" formControlName="email" />
+  <span
+    class="errorMsg"
+    *ngIf="!email?.pristine && email?.errors?.['required']"
+  >
+    Email is required.</span
+  >
+
+  <label for="password">Password</label>
+  <input
+    name="password"
+    placeholder="Password"
+    type="password"
+    formControlName="password"
+  />
+
+  <label for="confirmPassword">Confirm Password</label>
+  <input
+    name="confirmPassword"
+    type="password"
+    formControlName="confirmPassword"
+  />
+  }
+
+  <div class="btn">
+    <button class="submit" type="submit">
+      {{ isLogin ? "Login" : "Submit" }}
+    </button>
+    <button class="back"><a routerLink="/">Voltar</a></button>
+  </div>
+</form>

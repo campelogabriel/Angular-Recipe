@@ -1,0 +1,16 @@
+<div class="favorite">
+  @if (isLogged$) {
+  <h1>⭐ Your favorites recipes ⭐</h1>
+  @for (recipe of recipes$; track recipe.id) {
+  <app-item-recipe
+    [id]="recipe.id"
+    [image]="recipe.image"
+    [title]="recipe.title"
+  ></app-item-recipe>
+  } } @else{
+  <h1 class="notlogin">
+    😐 You're not logged. Please <a routerLink="/login">login here</a> for you
+    get access of your favorite recipes.
+  </h1>
+  }
+</div>
