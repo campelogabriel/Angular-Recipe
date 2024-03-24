@@ -1,15 +1,13 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +22,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   registerForm: FormGroup;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
@@ -39,9 +37,13 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.isLogin) {
-      console.log(this.loginForm.valid);
+      this.userService
+        .loginUser(this.loginForm.value)
+        .subscribe((a) => console.log(a));
     } else {
-      console.log(this.registerForm.controls);
+      this.userService
+        .signupUser(this.registerForm.value)
+        .subscribe((a) => console.log(a));
     }
   }
 
@@ -50,12 +52,5 @@ export class LoginComponent {
   }
   setSignup() {
     this.isLogin = false;
-  }
-  get name() {
-    return this.registerForm.get('name');
-  }
-  get email() {
-    if (this.isLogin) return this.loginForm.get('email');
-    return this.registerForm.get('email');
   }
 }

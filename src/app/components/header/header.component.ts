@@ -1,3 +1,4 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -5,22 +6,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  @Input() test: string;
-
   name: string = 'Gabriel';
   isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    true
+    false
   );
-
   constructor() {}
-
   ngOnInit(): void {
-    console.log(this.test);
+    this.isAuthenticated$.next(true);
   }
 
   setLogout() {

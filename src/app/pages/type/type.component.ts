@@ -23,10 +23,30 @@ export class TypeComponent {
   ) {
     this.value = this.route.snapshot.paramMap.get('value');
     this.recipeService
-      .getRecipeByType(this.value)
-      .subscribe((res) => (this.recipes = res.results));
+      .getRecipeByType(this.value, String(this.offSet))
+      .subscribe((res) => {
+        console.log(res);
+        this.recipes = res.results;
+      });
   }
 
-  setPreviewsRecipes() {}
-  setMoreRecipes() {}
+  setPreviewsRecipes() {
+    if (this.offSet == 0) return;
+    this.offSet--;
+    this.recipeService
+      .getRecipeByType(this.value, String(this.offSet))
+      .subscribe((res) => {
+        console.log(res);
+        this.recipes = res.results;
+      });
+  }
+  setMoreRecipes() {
+    this.offSet++;
+    this.recipeService
+      .getRecipeByType(this.value, String(this.offSet))
+      .subscribe((res) => {
+        console.log(res);
+        this.recipes = res.results;
+      });
+  }
 }

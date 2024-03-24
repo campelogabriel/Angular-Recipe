@@ -12,5 +12,5 @@ import { RouterLink } from '@angular/router';
 })
 export class FavoriteComponent {
   isLogged$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  recipes$: Array<any>;
+  recipes: Array<any> = [];
 }

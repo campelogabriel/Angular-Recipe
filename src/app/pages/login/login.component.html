@@ -6,10 +6,17 @@
   </div>
   @if (isLogin) {
   <label for="email">Email</label>
-  <input required name="email" placeholder="Email" formControlName="email" />
+  <input
+    email
+    required
+    name="email"
+    placeholder="Email"
+    formControlName="email"
+    #email
+  />
   <span
+    *ngIf="loginForm.controls['email'].errors?.['required']"
     class="errorMsg"
-    *ngIf="!email?.pristine && email?.errors?.['required']"
   >
     Email is required.</span
   >
@@ -21,26 +28,20 @@
     type="password"
     formControlName="password"
   />
+  <span
+    *ngIf="loginForm.controls['password'].pristine || loginForm.controls['password'].errors?.['required']"
+    class="errorMsg"
+  >
+    Password is required.</span
+  >
 
   } @else{
 
   <label for="name">Name</label>
   <input name="name" type="text" placeholder="Name" formControlName="name" />
-  <span class="errorMsg" *ngIf="!name?.pristine && name?.errors?.['required']">
-    Name is required.</span
-  >
-  <span class="errorMsg" *ngIf="!name?.pristine && name?.errors?.['minlength']">
-    Name must be at least 4 characters long.</span
-  >
 
   <label for="email">Email</label>
   <input required name="email" placeholder="Email" formControlName="email" />
-  <span
-    class="errorMsg"
-    *ngIf="!email?.pristine && email?.errors?.['required']"
-  >
-    Email is required.</span
-  >
 
   <label for="password">Password</label>
   <input

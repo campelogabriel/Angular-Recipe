@@ -1,13 +1,15 @@
 <div class="favorite">
-  @if (isLogged$) {
+  @if (isLogged$) { @if(recipes.length == 0){
+  <h1 class="notlogin">You don't have favorite recipes</h1>
+  }@else{
   <h1>⭐ Your favorites recipes ⭐</h1>
-  @for (recipe of recipes$; track recipe.id) {
+  @for (recipe of recipes; track recipe.id) {
   <app-item-recipe
     [id]="recipe.id"
     [image]="recipe.image"
     [title]="recipe.title"
   ></app-item-recipe>
-  } } @else{
+  }} } @else{
   <h1 class="notlogin">
     😐 You're not logged. Please <a routerLink="/login">login here</a> for you
     get access of your favorite recipes.
