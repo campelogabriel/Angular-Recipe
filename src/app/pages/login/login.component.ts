@@ -1,10 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import {
-  FormBuilder,
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
+  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -31,7 +33,7 @@ export class LoginComponent {
       name: new FormControl('', [Validators.required, Validators.minLength(4)]),
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', [Validators.required]),
     });
   }
 

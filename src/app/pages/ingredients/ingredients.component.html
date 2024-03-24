@@ -3,15 +3,19 @@
     <h1>Type the ingredients that you want to use in your meal</h1>
     <!-- FORM VAI AQUI -->
     <form (submit)="onSubmit($event)">
-      <input name="search" [formControl]="searchText" />
+      <input
+        type="text"
+        placeholder="Cheese,Rice,Meat"
+        [formControl]="searchText"
+      />
     </form>
   </div>
 
-  @if(recipeArr.length > 0){ @if (isLoading) {
+  @if (isLoading){
   <img src="../../../assets/spinner.svg" alt="" />
   } @else{
   <div class="container__ingredients--recipes">
-    @for (recipe of recipeArr; track recipe.id) {
+    @for ( recipe of recipeObj; track recipe.id) {
     <app-item-recipe
       [id]="recipe.id"
       [title]="recipe.title"
@@ -19,5 +23,7 @@
     ></app-item-recipe>
     }
   </div>
-  } }
+  }
 </div>
+
+<!-- FAZER O HTTP CLIENT DO COMPONENT INGREDIENTES -->

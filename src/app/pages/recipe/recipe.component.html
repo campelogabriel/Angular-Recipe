@@ -1,7 +1,4 @@
-<div class="spinner">
-  <img src="../../../assets/spinner.svg" />
-</div>
-
+@if (recipeObj){
 <div class="recipe">
   <div class="recipe__main">
     <h4>{{ recipeObj.title }}</h4>
@@ -36,3 +33,8 @@
     </div>
   </div>
 </div>
+} @else {
+<div class="spinner">
+  <img src="../../../assets/spinner.svg" />
+</div>
+}
