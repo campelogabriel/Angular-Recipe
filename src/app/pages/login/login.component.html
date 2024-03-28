@@ -39,9 +39,21 @@
 
   <label for="name">Name</label>
   <input name="name" type="text" placeholder="Name" formControlName="name" />
+  <span
+    *ngIf="!registerForm.controls['name'].pristine && registerForm.controls['name'].errors?.['required']"
+    class="errorMsg"
+  >
+    Name is required.</span
+  >
 
   <label for="email">Email</label>
   <input required name="email" placeholder="Email" formControlName="email" />
+  <span
+    *ngIf="!registerForm.controls['email'].pristine && registerForm.controls['email'].errors?.['required']"
+    class="errorMsg"
+  >
+    Email is required.</span
+  >
 
   <label for="password">Password</label>
   <input

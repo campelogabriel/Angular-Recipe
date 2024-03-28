@@ -1,34 +1,25 @@
 <div class="header">
   <div class="header__main">
     <img class="header__main--logo" src="/assets/Logo.png" alt="Logo Recipe" />
-    @if (!isAuthenticated$) {
     <div class="header__main--user">
+      @if (isAuthenticated) {
       <div class="user--login">
         <img src="/assets/profileIcon.svg" alt="User Profile" />
         <a routerLink="login">
           <h3>Log in</h3>
         </a>
       </div>
-    </div>
-    } @else {
-
-    <div class="header__main--user">
+      } @else {
       <div class="user--login">
         <div class="user--login__prof">
           <img src="/assets/profileIcon.svg" alt="User Profile" />
           <a routerLink="edit">
-            <h3>{{ name }}</h3>
+            <h3>{{ name() }}</h3>
           </a>
         </div>
-        <img
-          (click)="setLogout()"
-          class="user--login__logout"
-          src="assets/logout.svg"
-          alt="Logout"
-        />
       </div>
+      }
     </div>
-    }
   </div>
   <div class="header__menu">
     <ul>

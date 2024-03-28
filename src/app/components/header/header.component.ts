@@ -1,5 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -11,16 +11,16 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent implements OnInit {
-  name: string = 'Gabriel';
-  isAuthenticated$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
+  name = signal('');
+  isAuthenticated = signal(false);
   constructor() {}
   ngOnInit(): void {
-    this.isAuthenticated$.next(true);
+    this.isAuthenticated.set(true);
+    this.name.set('Gabriel');
   }
 
   setLogout() {
-    this.isAuthenticated$.next(false);
+    this.isAuthenticated.set(false);
+    this.name.set('');
   }
 }
